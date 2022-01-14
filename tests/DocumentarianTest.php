@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Collection;
-use Mpociot\Documentarian\Documentarian;
+use hahadu\Documentarian\Documentarian;
 
 function glob_recursive($pattern, $flags = 0)
 {
@@ -120,7 +120,7 @@ class DocumentarianTest extends PHPUnit_Framework_TestCase
 
         $documentarian = new Documentarian();
         $documentarian->create($outputDir);
-        
+
         $this->assertTrue(is_array($documentarian->config($outputDir)));
         $this->assertEquals('git', $documentarian->config($outputDir, 'deployment.type'));
         $this->assertEquals('gh-pages', $documentarian->config($outputDir, 'deployment.branch'));

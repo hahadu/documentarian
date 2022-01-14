@@ -14,7 +14,7 @@
       "src/includes/helpers.php"
     ],
     "psr-4": {
-      "Mpociot\\Documentarian\\": "src/"
+      "hahadu\\Documentarian\\": "src/"
     }
   },
   "bin": [

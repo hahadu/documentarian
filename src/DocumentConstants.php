@@ -1,6 +1,6 @@
 <?php
 
-namespace Mpociot\Documentarian;
+namespace hahadu\Documentarian;
 
 class DocumentConstants
 {
