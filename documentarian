@@ -10,7 +10,7 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require __DIR__ . '/../../autoload.php';
 }
 
-use hahadu\Documentarian\Documentarian;
+use Hahadu\Documentarian\Documentarian;
 use Silly\Application;
 
 $documentarian = new Documentarian();

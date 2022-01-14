@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Collection;
-use hahadu\Documentarian\Documentarian;
+use Hahadu\Documentarian\Documentarian;
 
 function glob_recursive($pattern, $flags = 0)
 {

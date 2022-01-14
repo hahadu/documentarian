@@ -1,14 +1,15 @@
 <?php
 
-namespace hahadu\Documentarian;
+namespace Hahadu\Documentarian;
 
 use Illuminate\Support\Arr;
 use Mni\FrontYAML\Parser;
 use Windwalker\Renderer\BladeRenderer;
+use function rcopy;
 
 /**
  * Class Documentarian
- * @package hahadu\Documentarian
+ * @package Hahadu\Documentarian
  */
 class Documentarian
 {

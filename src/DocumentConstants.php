@@ -1,6 +1,6 @@
 <?php
 
-namespace hahadu\Documentarian;
+namespace Hahadu\Documentarian;
 
 class DocumentConstants
 {
