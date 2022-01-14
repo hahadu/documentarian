@@ -22,9 +22,9 @@
   ],
   "require": {
     "php": ">=7.0",
-    "mnapoli/silly": "^1.0",
-    "illuminate/view": ">=8.0",
-    "mnapoli/front-yaml": "^1.5",
+    "mnapoli/silly": "^1.7",
+    "illuminate/view": "^8.0",
+    "mnapoli/front-yaml": "^2.0",
     "windwalker/renderer": "3.*"
   },
   "require-dev": {
