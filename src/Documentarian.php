@@ -81,8 +81,8 @@ class Documentarian
         $html = $document->getContent();
 
         $renderer = new BladeRenderer(
-            [DocumentConstants::DOCUMENT_RESOURCES_PATH.'views'],
-            ['cache_path' => $source_dir . '/_tmp']
+            ['paths'=>[DocumentConstants::DOCUMENT_RESOURCES_PATH.'views'],
+            'cache_path' => $source_dir . '/_tmp']
         );
 
         // Parse and include optional include markdown files
