@@ -7,16 +7,31 @@ use Mni\FrontYAML\Parser;
 use Windwalker\Renderer\BladeRenderer;
 use function rcopy;
 
+/**
+ * Class Documentarian
+ * @package Hahadu\Documentarian
+ */
 class Documentarian
 {
 
+    /**
+     * Returns a config value
+     *
+     * @param string $key
+     * @return mixed
+     */
     public function config(string $folder, ?string $key = null): mixed
     {
-        $config = include($folder . DIRECTORY_SEPARATOR . 'source/config.php');
+        $config = include($folder .DIRECTORY_SEPARATOR . 'source/config.php');
 
         return is_null($key) ? $config : Arr::get($config, $key);
     }
 
+    /**
+     * Create a new API documentation folder and copy all needed files/stubs
+     *
+     * @param $folder
+     */
     public function create(string $folder): void
     {
         $folder = $folder . '/source';
@@ -29,21 +44,27 @@ class Documentarian
         }
 
         // copy stub files
-        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'stubs/index.md', $folder . '/index.md');
-        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'stubs/gitignore.stub', $folder . '/.gitignore');
-        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'stubs/includes/_errors.md', $folder . '/includes/_errors.md');
-        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'stubs/package.json', $folder . '/package.json');
-        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'stubs/gulpfile.js', $folder . '/gulpfile.js');
-        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'stubs/config.php', $folder . '/config.php');
-        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'stubs/js/all.js', $folder . '/../js/all.js');
-        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'stubs/css/style.css', $folder . '/../css/style.css');
+        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'stubs/index.md', $folder . '/index.md');
+        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'stubs/gitignore.stub', $folder . '/.gitignore');
+        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'stubs/includes/_errors.md', $folder . '/includes/_errors.md');
+        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'stubs/package.json', $folder . '/package.json');
+        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'stubs/gulpfile.js', $folder . '/gulpfile.js');
+        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'stubs/config.php', $folder . '/config.php');
+        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'stubs/js/all.js', $folder . '/../js/all.js');
+        copy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'stubs/css/style.css', $folder . '/../css/style.css');
 
         // copy resources
-        rcopy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'images/', $folder . '/assets/images');
-        rcopy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'js/', $folder . '/assets/js');
-        rcopy(DocumentConstants::DOCUMENT_RESOURCES_PATH . 'stylus/', $folder . '/assets/stylus');
+        rcopy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'images/', $folder . '/assets/images');
+        rcopy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'js/', $folder . '/assets/js');
+        rcopy(DocumentConstants::DOCUMENT_RESOURCES_PATH.'stylus/', $folder . '/assets/stylus');
     }
 
+    /**
+     * Generate the API documentation using the markdown and include files
+     *
+     * @param $folder
+     * @return false|null
+     */
     public function generate(string $folder): ?bool
     {
         $source_dir = $folder . '/source';
@@ -60,7 +81,7 @@ class Documentarian
         $html = $document->getContent();
 
         $renderer = new BladeRenderer(
-            ['paths' => [DocumentConstants::DOCUMENT_RESOURCES_PATH . 'views'],
+            ['paths'=>[DocumentConstants::DOCUMENT_RESOURCES_PATH.'views'],
             'cache_path' => $source_dir . '/_tmp']
         );
 
@@ -76,7 +97,7 @@ class Documentarian
 
         $output = $renderer->render('index', [
             'page' => $frontmatter,
-            'content' => $html,
+            'content' => $html
         ]);
 
         file_put_contents($folder . '/index.html', $output);

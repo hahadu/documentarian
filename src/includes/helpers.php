@@ -2,6 +2,9 @@
 
 /**
  * Output the given text to the console.
+ *
+ * @param  string $output
+ * @return void
  */
 if (!function_exists('info')) {
     function info(string $output): void
@@ -12,6 +15,9 @@ if (!function_exists('info')) {
 
 /**
  * Output the given text to the console.
+ *
+ * @param  string $output
+ * @return void
  */
 if (!function_exists('output')) {
     function output(string $output): void
@@ -25,7 +31,12 @@ if (!function_exists('output')) {
 
 /**
  * Recursively copy files from one directory to another
+ *
+ * @param String $src - Source of files being moved
+ * @param String $dest - Destination of files being moved
+ * @return bool
  */
+
 if (!function_exists('rcopy')) {
     function rcopy(string $src, string $dest): bool
     {
