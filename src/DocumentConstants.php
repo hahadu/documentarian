@@ -2,9 +2,7 @@
 
 namespace Hahadu\Documentarian;
 
-class DocumentConstants
+final class DocumentConstants
 {
-    const DOCUMENT_RESOURCES_PATH = __DIR__ . '/../resources/';
-
-
+    final public const DOCUMENT_RESOURCES_PATH = __DIR__ . '/../resources/';
 }

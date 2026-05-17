@@ -2,12 +2,9 @@
 
 /**
  * Output the given text to the console.
- *
- * @param  string $output
- * @return void
  */
 if (!function_exists('info')) {
-    function info($output)
+    function info(string $output): void
     {
         output('<info>' . $output . '</info>');
     }
@@ -15,12 +12,9 @@ if (!function_exists('info')) {
 
 /**
  * Output the given text to the console.
- *
- * @param  string $output
- * @return void
  */
 if (!function_exists('output')) {
-    function output($output)
+    function output(string $output): void
     {
         if (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] == 'testing') {
             return;
@@ -31,14 +25,9 @@ if (!function_exists('output')) {
 
 /**
  * Recursively copy files from one directory to another
- *
- * @param String $src - Source of files being moved
- * @param String $dest - Destination of files being moved
- * @return bool
  */
-
 if (!function_exists('rcopy')) {
-    function rcopy($src, $dest)
+    function rcopy(string $src, string $dest): bool
     {
 
         // If source is not a directory stop processing
@@ -61,5 +50,7 @@ if (!function_exists('rcopy')) {
                 rcopy($f->getRealPath(), "$dest/$f");
             }
         }
+
+        return true;
     }
 }

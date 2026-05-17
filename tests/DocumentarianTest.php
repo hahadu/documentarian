@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Collection;
+use PHPUnit\Framework\TestCase;
 use Hahadu\Documentarian\Documentarian;
 
-function glob_recursive($pattern, $flags = 0)
+function glob_recursive(string $pattern, int $flags = 0): array
 {
-    $files = glob($pattern, $flags);
+    $files = glob($pattern, $flags) ?: [];
 
     foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
         $files = array_merge($files, glob_recursive($dir . '/' . basename($pattern), $flags));
@@ -15,17 +15,17 @@ function glob_recursive($pattern, $flags = 0)
 }
 
 
-class DocumentarianTest extends PHPUnit_Framework_TestCase
+class DocumentarianTest extends TestCase
 {
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         exec('rm -rf ' . __DIR__ . '/output');
         mkdir(__DIR__ . '/output');
         touch(__DIR__ . '/output/.gitkeep');
     }
 
-    public function test_creates_documentation_folder_and_copies_assets()
+    public function test_creates_documentation_folder_and_copies_assets(): void
     {
         $outputDir = __DIR__ . '/output';
 
@@ -76,7 +76,7 @@ class DocumentarianTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    public function test_cannot_generate_html_if_folder_does_not_exist()
+    public function test_cannot_generate_html_if_folder_does_not_exist(): void
     {
         $outputDir = __DIR__ . '/output';
 
@@ -84,7 +84,7 @@ class DocumentarianTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($documentarian->generate($outputDir));
     }
 
-    public function test_can_generate_html()
+    public function test_can_generate_html(): void
     {
         $outputDir = __DIR__ . '/output';
         $assertionDir = __DIR__ . '/assertions';
@@ -114,7 +114,7 @@ class DocumentarianTest extends PHPUnit_Framework_TestCase
 
     }
 
-    public function test_can_get_config_value()
+    public function test_can_get_config_value(): void
     {
         $outputDir = __DIR__ . '/output';
 

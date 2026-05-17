@@ -17,16 +17,16 @@ $documentarian = new Documentarian();
 
 $app = new Application('Documentarian', 'v0.1.0');
 
-$app->command('create [folder]', function ($folder) use ($documentarian) {
+$app->command('create [folder]', function (string $folder) use ($documentarian): void {
     $folder = getcwd() . '/' . $folder;
     $documentarian->create($folder);
     $documentarian->generate($folder);
     info('Created documentation in folder: ' . $folder);
 })->defaults([
     'folder' => '',
-]);;
+]);
 
-$app->command('generate', function () use ($documentarian) {
+$app->command('generate', function () use ($documentarian): void {
     if (!is_dir(getcwd() . '/source')) {
         output('<fg=red>Documentarian is not installed in the current folder.</>');
         output('<fg=red>Use `documentarian create` to initiate a new API documentation.</>');
